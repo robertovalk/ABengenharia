@@ -1,0 +1,120 @@
+/* ====== SEÇÃO SERVIÇOS ====== */
+.servicos-ab {
+  background: #e6e7ea; /* cinza claro igual ao material */
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+}
+
+.servicos-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.servicos-head {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.servicos-title {
+  color: #1f3557; /* azul-petróleo */
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.servicos-subtitle {
+  color: #4a4a4a;
+  font-size: 16px;
+  margin: 0;
+}
+
+/* ====== GRID ====== */
+.servicos-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.servico-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.servico-title {
+  color: #1f3557;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.servico-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.servico-card ul li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 6px;
+  font-size: 15px;
+  color: #1a1a1a;
+}
+
+.servico-card ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 8px;
+  height: 8px;
+  background: #0d4d8c; /* azul detalhe */
+  transform: rotate(45deg);
+}
+
+/* CTA */
+.servicos-cta {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.btn-whatsapp {
+  display: inline-block;
+  background: #25D366; /* verde WhatsApp */
+  color: #fff;
+  font-weight: bold;
+  padding: 12px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background .2s ease;
+}
+
+.btn-whatsapp:hover {
+  background: #1ebe5d;
+}
+
+/* ====== RESPONSIVIDADE ====== */
+
+/* >= 320px */
+@media (min-width: 320px) {
+  .servicos-grid {
+    grid-template-columns: 1fr;
+  }
+  .wide { grid-column: auto; }
+}
+
+/* >= 768px */
+@media (min-width: 768px) {
+  .servicos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .wide { grid-column: span 2; }
+}
+
+/* >= 1024px */
+@media (min-width: 1024px) {
+  .servicos-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .wide { grid-column: span 3; }
+}

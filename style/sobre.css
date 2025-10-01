@@ -1,0 +1,94 @@
+.about-ab {
+  padding: 60px 20px;
+  background-color: #f5f5f5;
+  font-family: Arial, sans-serif;
+}
+
+.about-ab .container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 40px;
+}
+
+.about-ab .about-image {
+  flex: 1;
+  min-width: 300px;
+}
+
+.about-ab .about-image img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.about-ab .about-text {
+  flex: 1;
+  min-width: 300px;
+}
+
+.about-ab .about-text h2 {
+  font-size: 2rem;
+  color: #222;
+  margin-bottom: 20px;
+}
+
+.about-ab .about-text p {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+/* Para telas até 1024px (notebooks/tablets em paisagem) */
+@media (max-width: 1024px) {
+  .about-ab .container {
+    gap: 30px;
+  }
+
+  .about-ab .about-text h2 {
+    font-size: 1.8rem;
+  }
+}
+
+/* Para telas até 768px (tablets e celulares grandes) */
+@media (max-width: 768px) {
+  .about-ab .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-ab .about-text {
+    margin-top: 20px;
+  }
+
+  .about-ab .about-text h2 {
+    font-size: 1.6rem;
+  }
+
+  .about-ab .about-text p {
+    font-size: 1rem;
+  }
+}
+
+/* Para telas até 320px (celulares pequenos) */
+@media (max-width: 320px) {
+  .about-ab {
+    padding: 30px 10px;
+  }
+
+  .about-ab .about-text h2 {
+    font-size: 1.4rem;
+  }
+
+  .about-ab .about-text p {
+    font-size: 0.95rem;
+  }
+}
+
