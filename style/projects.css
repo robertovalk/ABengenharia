@@ -1,6 +1,5 @@
 /* ===== SEÇÃO PROJECT ===== */
 .project-ab {
-  background: #e6e7ea; /* cinza claro da identidade */
   padding: 40px 20px;
   text-align: center;
   font-family: Arial, sans-serif;
@@ -43,20 +42,6 @@
   transform: scale(1.1);
 }
 
-/* Overlay (fade + texto) */
-.overlay {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(31,53,87,0.75); /* azul petróleo translúcido */
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity .3s ease;
-  font-size: 18px;
-  font-weight: bold;
-}
 
 .project-item:hover .overlay {
   opacity: 1;
