@@ -69,41 +69,40 @@
   .project-ab .project-item { aspect-ratio: 1 / 1; }
 }
 
-/* ===== LIGHTBOX ESCOPADO À SEÇÃO ===== */
-.project-ab .ab-lightbox {
+/* ===== AB LIGHTBOX ===== */
+.ab-lightbox {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  display: none;                /* fechado por padrão */
+  display: none;               /* fechado por padrão */
   place-items: center;
   background: rgba(0,0,0,0.9);
 }
-.project-ab .ab-lightbox.is-open { display: grid; }
+.ab-lightbox.is-open {         /* abre ao adicionar esta classe */
+  display: grid;
+}
 
-/* imagem no tamanho natural, limitada pela tela */
-.project-ab .ab-content {
+.ab-content {
   display: block;
-  width: auto !important;       /* ignora img{width:100%} globais */
+  width: auto !important;      /* ignora img{width:100%} globais */
   height: auto !important;
-  max-width: 82vw;              /* ↓ menor para não “tomar” a tela toda */
-  max-height: 82vh;
-  object-fit: contain;          /* mantém proporção, sem cortar */
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;         /* sem corte e sem distorção */
   border-radius: 8px;
   box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 
-/* legenda (opcional) */
-.project-ab .ab-caption {
+.ab-caption {
   text-align: center;
   color: #fff;
   margin-top: 10px;
   font-size: 15px;
-  max-width: 82vw;
+  max-width: 90vw;
   word-wrap: break-word;
 }
 
-/* botão fechar */
-.project-ab .ab-close {
+.ab-close {
   position: fixed;
   top: 16px;
   right: 22px;
@@ -116,4 +115,4 @@
   padding: 0;
   transition: color .3s ease;
 }
-.project-ab .ab-close:hover { color: #bbb; }
+.ab-close:hover { color: #bbb; }
