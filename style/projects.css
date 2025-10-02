@@ -1,14 +1,14 @@
-/* ===== SEÇÃO PROJECT ===== */
+/* ===== SEÇÃO PROJECT (container) ===== */
 .project-ab {
   padding: 40px 20px;
   text-align: center;
   font-family: Arial, sans-serif;
-  max-width: 1400px; /* limite no desktop */
+  max-width: 1400px;  /* limite no desktop */
   margin: 0 auto;
 }
 
 .project-titulo {
-  color: #1f3557; /* azul-petróleo */
+  color: #1f3557;     /* azul-petróleo */
   font-size: 28px;
   margin-bottom: 30px;
 }
@@ -19,98 +19,114 @@
   gap: 12px;
 }
 
-/* Cada card do grid */
+/* ===== CARD ===== */
+/* tiramos a height fixa e usamos aspect-ratio para padronizar */
 .project-item {
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  height: 220px; /* altura fixa para manter todas iguais */
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
   background: #ccc;
+
+  /* proporção padrão (ajuste se quiser 1/1, 3/2, 16/9, etc.) */
+  aspect-ratio: 4 / 3;
 }
 
+/* imagem preenche sem deformar; pode cortar um pouco (cover) */
 .project-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* corta e centraliza sem deformar */
   display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  object-position: center;
   transition: transform .4s ease;
 }
 
+/* Hover suave */
 .project-item:hover img {
-  transform: scale(1.1);
+  transform: scale(1.06);
 }
 
-
-.project-item:hover .overlay {
-  opacity: 1;
+/* ===== OPCIONAL: ver a imagem inteira (sem corte) em cards específicos ===== */
+/* aplique .project-item--contain no card desejado */
+.project-item--contain img {
+  object-fit: contain;
+  background: #111; /* fundo para áreas “sobrando” */
 }
 
-/* ===== MODAL ===== */
+/* ===== MODAL (Lightbox) — NATURAL SIZE, SEM ESTICAR ===== */
 .modal {
   display: none;
   position: fixed;
+  inset: 0;
   z-index: 9999;
-  padding-top: 60px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.9);
+  background: rgba(0,0,0,0.9);
+
+  /* centraliza perfeitamente sem padding-top */
+  display: grid;
+  place-items: center;
 }
 
+/* a imagem abre no tamanho natural, limitada pela tela */
 .modal-content {
-  margin: auto;
   display: block;
-  max-width: 90%;
-  max-height: 80vh;
+  width: auto !important;     /* vence qualquer img{width:100%} global */
+  height: auto !important;    /* idem para height */
+  max-width: 90vw;            /* nunca ultrapassa a viewport */
+  max-height: 90vh;
+  object-fit: contain;        /* mantém proporção SEM cortar */
   border-radius: 8px;
   box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 
+/* legenda opcional */
 #caption {
   text-align: center;
   color: #fff;
   margin-top: 10px;
   font-size: 16px;
+  max-width: 90vw;
+  word-wrap: break-word;
 }
 
+/* botão fechar fica no canto */
 .close {
-  position: absolute;
-  top: 20px;
-  right: 35px;
+  position: fixed;            /* fixo p/ não “descer” com a imagem */
+  top: 16px;
+  right: 22px;
   color: #fff;
-  font-size: 40px;
+  font-size: 36px;
   font-weight: bold;
   cursor: pointer;
-  transition: 0.3s;
+  transition: color .3s ease;
 }
-
-.close:hover {
-  color: #bbb;
-}
-
+.close:hover { color: #bbb; }
 
 /* ===== RESPONSIVIDADE ===== */
 
-/* Mobile - até 767px */
+/* Celular (até 767px): 1 coluna */
 @media (max-width: 767px) {
   .project-grid {
-    grid-template-columns: 1fr; /* 1 coluna */
+    grid-template-columns: 1fr;
   }
 }
 
-/* Tablet - 768px até 1023px */
+/* Tablet (768px a 1023px): 2 colunas */
 @media (min-width: 768px) and (max-width: 1023px) {
   .project-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 colunas */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Desktop - a partir de 1024px */
+/* Desktop (a partir de 1024px): 4 colunas */
 @media (min-width: 1024px) {
   .project-grid {
-    grid-template-columns: repeat(4, 1fr); /* 🔥 sempre 4 colunas */
+    grid-template-columns: repeat(4, 1fr);
   }
+}
+
+/* ===== OPCIONAL: telas ultra pequenas (≤ 230px) ===== */
+@media (max-width: 230px) {
+  .project-item { aspect-ratio: 1 / 1; }  /* quadrado ajuda em telas muito estreitas */
 }
