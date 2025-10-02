@@ -1,27 +1,26 @@
 /* ===== SEÇÃO PROJECT (container) ===== */
 .project-ab {
-  padding: 40px 20px;
+  padding: 32px 16px;
   text-align: center;
   font-family: Arial, sans-serif;
-  max-width: 1400px;  /* limite no desktop */
+  max-width: 1120px;         /* ↓ menor que 1400 p/ não parecer gigante */
   margin: 0 auto;
 }
 
-.project-titulo {
-  color: #1f3557;     /* azul-petróleo */
-  font-size: 28px;
-  margin-bottom: 30px;
+.project-ab .project-titulo {
+  color: #1f3557;
+  font-size: 26px;
+  margin-bottom: 22px;
 }
 
 /* ===== GRID ===== */
-.project-grid {
+.project-ab .project-grid {
   display: grid;
-  gap: 12px;
+  gap: 10px;
 }
 
-/* ===== CARD ===== */
-/* tiramos a height fixa e usamos aspect-ratio para padronizar */
-.project-item {
+/* Thumbs menores e consistentes com proporção controlada */
+.project-ab .project-item {
   position: relative;
   overflow: hidden;
   cursor: pointer;
@@ -29,104 +28,92 @@
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
   background: #ccc;
 
-  /* proporção padrão (ajuste se quiser 1/1, 3/2, 16/9, etc.) */
-  aspect-ratio: 4 / 3;
+  /* proporção de thumb (reduz altura visual) */
+  aspect-ratio: 3 / 2;     /* mobile/tablet */
 }
 
-/* imagem preenche sem deformar; pode cortar um pouco (cover) */
-.project-item img {
+@media (min-width: 1024px) {
+  .project-ab .project-item { aspect-ratio: 16 / 9; } /* desktop fica mais “wide” */
+}
+
+/* imagem do thumb: cobre sem deformar */
+.project-ab .project-item img {
   display: block;
   width: 100% !important;
   height: 100% !important;
   object-fit: cover;
   object-position: center;
-  transition: transform .4s ease;
+  transition: transform .35s ease;
+}
+.project-ab .project-item:hover img { transform: scale(1.05); }
+
+/* ===== COLUNAS POR BREAKPOINT ===== */
+/* Mobile (até 767px): 2 colunas para os thumbs ficarem menores */
+@media (max-width: 767px) {
+  .project-ab .project-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* Hover suave */
-.project-item:hover img {
-  transform: scale(1.06);
+/* Tablet (768–1023px): 3 colunas */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .project-ab .project-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
-/* ===== OPCIONAL: ver a imagem inteira (sem corte) em cards específicos ===== */
-/* aplique .project-item--contain no card desejado */
-.project-item--contain img {
-  object-fit: contain;
-  background: #111; /* fundo para áreas “sobrando” */
+/* Desktop (≥1024px): 4 colunas */
+@media (min-width: 1024px) {
+  .project-ab .project-grid { grid-template-columns: repeat(4, 1fr); }
 }
 
-/* ===== MODAL (Lightbox) — NATURAL SIZE, SEM ESTICAR ===== */
-.modal {
-  display: none;
+/* Telas ultra pequenas (≤230px) — opcional */
+@media (max-width: 230px) {
+  .project-ab .project-grid { grid-template-columns: 1fr; }
+  .project-ab .project-item { aspect-ratio: 1 / 1; }
+}
+
+/* ===== LIGHTBOX ESCOPADO À SEÇÃO ===== */
+.project-ab .ab-lightbox {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: rgba(0,0,0,0.9);
-
-  /* centraliza perfeitamente sem padding-top */
-  display: grid;
+  display: none;                /* fechado por padrão */
   place-items: center;
+  background: rgba(0,0,0,0.9);
 }
+.project-ab .ab-lightbox.is-open { display: grid; }
 
-/* a imagem abre no tamanho natural, limitada pela tela */
-.modal-content {
+/* imagem no tamanho natural, limitada pela tela */
+.project-ab .ab-content {
   display: block;
-  width: auto !important;     /* vence qualquer img{width:100%} global */
-  height: auto !important;    /* idem para height */
-  max-width: 90vw;            /* nunca ultrapassa a viewport */
-  max-height: 90vh;
-  object-fit: contain;        /* mantém proporção SEM cortar */
+  width: auto !important;       /* ignora img{width:100%} globais */
+  height: auto !important;
+  max-width: 82vw;              /* ↓ menor para não “tomar” a tela toda */
+  max-height: 82vh;
+  object-fit: contain;          /* mantém proporção, sem cortar */
   border-radius: 8px;
   box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 
-/* legenda opcional */
-#caption {
+/* legenda (opcional) */
+.project-ab .ab-caption {
   text-align: center;
   color: #fff;
   margin-top: 10px;
-  font-size: 16px;
-  max-width: 90vw;
+  font-size: 15px;
+  max-width: 82vw;
   word-wrap: break-word;
 }
 
-/* botão fechar fica no canto */
-.close {
-  position: fixed;            /* fixo p/ não “descer” com a imagem */
+/* botão fechar */
+.project-ab .ab-close {
+  position: fixed;
   top: 16px;
   right: 22px;
+  background: transparent;
+  border: 0;
   color: #fff;
-  font-size: 36px;
-  font-weight: bold;
+  font-size: 32px;
+  line-height: 1;
   cursor: pointer;
+  padding: 0;
   transition: color .3s ease;
 }
-.close:hover { color: #bbb; }
-
-/* ===== RESPONSIVIDADE ===== */
-
-/* Celular (até 767px): 1 coluna */
-@media (max-width: 767px) {
-  .project-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Tablet (768px a 1023px): 2 colunas */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .project-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Desktop (a partir de 1024px): 4 colunas */
-@media (min-width: 1024px) {
-  .project-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-/* ===== OPCIONAL: telas ultra pequenas (≤ 230px) ===== */
-@media (max-width: 230px) {
-  .project-item { aspect-ratio: 1 / 1; }  /* quadrado ajuda em telas muito estreitas */
-}
+.project-ab .ab-close:hover { color: #bbb; }

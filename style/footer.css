@@ -1,0 +1,106 @@
+/* RODAPÉ - AB ENGENHARIA */
+.footer {
+  background-color: #0f0f0f; /* Preto Profundo */
+  color: #ffffff; /* Branco */
+  padding: 40px 20px 20px;
+  font-family: "Arial", sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: auto;
+  gap: 20px;
+}
+
+.footer-logo {
+  text-align: center;
+}
+
+.footer-logo img {
+  max-width: 120px;
+  margin-bottom: 10px;
+}
+
+.footer-logo p {
+  font-size: 14px;
+  color: #d9d9d9; /* Cinza Claro */
+  letter-spacing: 1px;
+}
+
+.footer-info p {
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+.footer-info a {
+  color: #ff4e00; /* Laranja destaque */
+  text-decoration: none;
+}
+
+.footer-info a:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  border-top: 1px solid #2e2e2e;
+  margin-top: 20px;
+  padding-top: 10px;
+  text-align: center;
+  font-size: 13px;
+  color: #d9d9d9;
+}
+
+/* ======== RESPONSIVIDADE ======== */
+
+/* TELAS PEQUENAS (até 320px) */
+@media (max-width: 320px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .footer-logo img {
+    max-width: 90px;
+  }
+
+  .footer-info p {
+    font-size: 12px;
+  }
+
+  .footer-bottom {
+    font-size: 11px;
+  }
+}
+
+/* TELAS MÉDIAS (até 760px) */
+@media (max-width: 760px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-info {
+    margin-top: 15px;
+  }
+}
+
+/* TELAS GRANDES (a partir de 1024px) */
+@media (min-width: 1024px) {
+  .footer-container {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  .footer-logo {
+    text-align: left;
+  }
+
+  .footer-info {
+    text-align: right;
+  }
+}
