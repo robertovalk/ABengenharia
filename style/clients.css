@@ -1,0 +1,60 @@
+.logo-marquee { background: #0f0f0f; padding: 18px 0; }
+  .marquee { position: relative; overflow: hidden; height: 84px; display: flex; align-items: center; isolation: isolate; }
+  .marquee::before, .marquee::after { content: ""; position: absolute; top: 0; bottom: 0; width: 48px; z-index: 2; pointer-events: none; }
+  .marquee::before { left: 0; background: linear-gradient(to right, #0f0f0f, transparent); }
+  .marquee::after  { right: 0; background: linear-gradient(to left,  #0f0f0f, transparent); }
+
+  .track { display: flex; align-items: center; gap: 28px; list-style: none; padding: 0; margin: 0; min-width: 100%; animation: slide 35s linear infinite; }
+  .track + .track { margin-left: 28px; }
+
+  .item { position: relative; flex: 0 0 auto; display: grid; place-items: center; height: 64px; min-width: clamp(120px, 16vw, 220px); padding: 10px 14px; background: #151515; border: 1px solid #2a2a2a; border-radius: 14px; overflow: hidden; }
+  .item img { display: block; height: 36px; width: auto; filter: grayscale(100%) brightness(1.2) contrast(0.9); opacity: 0.95; transition: opacity .25s ease, filter .25s ease, transform .25s ease; }
+
+  /* overlay com o nome */
+  .item .item-name {
+    position: absolute; inset: 0; display: grid; place-items: center;
+    font: 600 14px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color: #fff; letter-spacing: .2px; text-align: center;
+    background: rgba(0,0,0,0.55);
+    opacity: 0; transform: translateY(4px);
+    transition: opacity .25s ease, transform .25s ease;
+    padding: 6px;
+  }
+
+  .item:hover .item-name, .item:focus-visible .item-name { opacity: 1; transform: translateY(0); }
+  .item:hover img, .item:focus-visible img { opacity: .35; filter: grayscale(0%) brightness(1) contrast(1); transform: scale(0.98); }
+
+  .marquee:hover .track { animation-play-state: paused; }
+
+  @keyframes slide { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+  @media (prefers-reduced-motion: reduce) { .track { animation: none; } }
+
+  /* ≤ 230px */
+  @media (max-width: 230px) {
+    .marquee { height: 72px; }
+    .track { gap: 14px; animation-duration: 28s; }
+    .marquee::before, .marquee::after { width: 28px; }
+    .item { min-width: 100px; padding: 8px 10px; border-radius: 10px; height: 52px; }
+    .item img { height: 24px; }
+    .item .item-name { font-size: 12px; padding: 4px; }
+  }
+
+  /* ≥ 768px */
+  @media (min-width: 768px) {
+    .marquee { height: 96px; }
+    .track { gap: 36px; animation-duration: 40s; }
+    .marquee::before, .marquee::after { width: 64px; }
+    .item { min-width: clamp(160px, 18vw, 260px); padding: 14px 18px; border-radius: 16px; height: 76px; }
+    .item img { height: 44px; }
+    .item .item-name { font-size: 15px; }
+  }
+
+  /* ≥ 1024px */
+  @media (min-width: 1024px) {
+    .marquee { height: 108px; }
+    .track { gap: 44px; animation-duration: 45s; }
+    .marquee::before, .marquee::after { width: 72px; }
+    .item { min-width: clamp(180px, 16vw, 300px); padding: 16px 22px; border-radius: 18px; height: 88px; }
+    .item img { height: 54px; }
+    .item .item-name { font-size: 16px; }
+  }
