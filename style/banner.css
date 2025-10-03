@@ -1,7 +1,5 @@
-
-
 .imagens {
-    
+    opacity: 0.94;
     background-color: black;
     height: 40em;
     width: 100%;
@@ -10,4 +8,56 @@
     margin-top: 21px;
 }
 
+.banner {
+    box-shadow: 0px 1px 5px #000000;
+}
 
+.carousel-caption {
+    position: absolute;
+    bottom: 14.25rem;
+    text-align: center;
+}
+
+.title-banner {
+    font-size: 52px;
+    text-shadow: 0px 0px 3px #000000;
+    color: #001f3f;
+}
+
+.subtitle-banner {
+    margin: 18px;
+    font-size: 25px;
+    text-shadow: 12px 9px 10px #000000;
+    color: #e6e6e6;
+    font-weight: bold;
+}
+
+
+/* TELAS MÉDIAS (até 760px) */
+@media (max-width: 760px) {
+    .title-banner {
+    font-size: 52px;
+}
+
+.subtitle-banner {
+    margin: 18px;
+    font-size: 25px;
+}
+}
+
+/* TELAS PEQUENAS (até 320px) */
+@media (max-width: 320px) {
+
+    .carousel-caption {
+        bottom: 7rem;
+    }
+
+    .title-banner {
+        font-size: 35px;
+    }
+
+    .subtitle-banner {
+        margin: 18px;
+        font-size: 20px;
+    }
+}
