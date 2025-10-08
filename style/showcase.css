@@ -1,0 +1,111 @@
+/* ===== Clientes — Layout 4: Mural Centralizado em Camadas ===== */
+/* Usa do seu :root:
+   --azul-escuro: #003554;
+   --cobre: #c16036;
+   --branco: #ffffff;
+*/
+
+.clients-showcase{
+  position: relative;
+  background: radial-gradient(circle at center, var(--azul-escuro) 0%, #001f30 100%);
+  padding: clamp(60px, 6vw, 120px) 20px;
+  text-align: center;
+  overflow: hidden;
+  color: var(--branco);
+}
+
+/* Cabeçalho */
+.showcase-head{ max-width: 900px; margin: 0 auto 40px; }
+.showcase-eyebrow{
+  color: var(--cobre);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-weight: 700;
+  font-size: .85rem;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.showcase-title{
+  font-size: clamp(1.8rem, 1.4rem + 1.8vw, 2.6rem);
+  margin: 0 0 12px;
+  color: var(--branco);
+}
+.showcase-sub{
+  color: rgba(255,255,255,.85);
+  font-size: 1.05rem;
+  margin: 0 auto;
+}
+
+/* Estrutura de camadas */
+.showcase-wrapper{
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+  gap: 28px;
+}
+.showcase-layer{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 28px;
+}
+.layer-back{
+  opacity: .35;
+  transform: scale(.92);
+  filter: blur(1px);
+}
+.layer-front{ position: relative; z-index: 2; }
+
+/* Cartão de logo */
+.logo-item{
+  background: rgba(0, 27, 40, .62);           /* azul escuro translúcido */
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 16px;
+  padding: 18px 26px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.30);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.logo-item img{
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  filter: grayscale(100%);
+  opacity: .9;
+  transition: filter .25s ease, opacity .25s ease, transform .25s ease;
+}
+.logo-item:hover img{
+  filter: grayscale(0%) brightness(1.06);
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* Destaque */
+.logo-item.featured{
+  border-color: var(--cobre);
+  box-shadow: 0 0 22px rgba(193,96,54,.45);
+  background: rgba(0, 27, 40, .85);
+  transform: scale(1.05);
+}
+
+/* Responsivo */
+@media (max-width: 1024px){
+  .showcase-layer{ gap: 22px; }
+  .logo-item{ padding: 16px 20px; }
+  .logo-item img{ max-width: 200px; }
+}
+@media (max-width: 760px){
+  .showcase-layer{ gap: 16px; }
+  .logo-item{ padding: 12px 16px; }
+  .logo-item img{ max-width: 170px; }
+  .layer-back{ display: none; } /* limpa a camada de fundo no mobile */
+}
+
+/* Acessibilidade: reduz movimento se o usuário preferir */
+@media (prefers-reduced-motion: reduce){
+  .logo-item, .logo-item img{ transition: none; }
+}
