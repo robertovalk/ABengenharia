@@ -1,43 +1,54 @@
-/* ===== SEÇÃO PROJECT (container) ===== */
-.project-ab {
+/* ===== SEÇÃO PROJECT (container) — mobile-first ===== */
+.project-ab{
   padding: 32px 16px;
   text-align: center;
   font-family: Arial, sans-serif;
-  max-width: 1120px;         /* ↓ menor que 1400 p/ não parecer gigante */
+  max-width: 1120px;
   margin: 0 auto;
 }
 
-.project-ab .project-titulo {
+.project-ab .project-titulo{
   color: #1f3557;
-  font-size: 26px;
+  font-size: clamp(22px, 2.5vw, 26px);
   margin-bottom: 22px;
 }
 
-/* ===== GRID ===== */
-.project-ab .project-grid {
+/* ===== GRID base (0–759px) ===== */
+.project-ab .project-grid{
   display: grid;
   gap: 10px;
+  grid-template-columns: repeat(2, 1fr);   /* mobile: 2 colunas por padrão */
 }
 
-/* Thumbs menores e consistentes com proporção controlada */
-.project-ab .project-item {
+/* Ultra estreito (<320px): 1 coluna */
+@media (max-width: 319.98px){
+  .project-ab .project-grid{ grid-template-columns: 1fr; }
+  .project-ab .project-item{ aspect-ratio: 1 / 1; } /* quadrado ajuda em telas ínfimas */
+}
+
+/* Small phones (320–375px): ajustes finos */
+@media (min-width: 320px) and (max-width: 375.98px){
+  .project-ab .project-grid{ gap: 8px; }
+}
+
+/* ===== ITEM ===== */
+.project-ab .project-item{
   position: relative;
   overflow: hidden;
   cursor: pointer;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
   background: #ccc;
-
-  /* proporção de thumb (reduz altura visual) */
-  aspect-ratio: 3 / 2;     /* mobile/tablet */
+  aspect-ratio: 3 / 2;               /* mobile/tablet “menos alto” */
 }
 
-@media (min-width: 1024px) {
-  .project-ab .project-item { aspect-ratio: 16 / 9; } /* desktop fica mais “wide” */
+/* Desktop fica mais wide */
+@media (min-width: 1024px){
+  .project-ab .project-item{ aspect-ratio: 16 / 9; }
 }
 
-/* imagem do thumb: cobre sem deformar */
-.project-ab .project-item img {
+/* Imagem */
+.project-ab .project-item img{
   display: block;
   width: 100% !important;
   height: 100% !important;
@@ -45,55 +56,52 @@
   object-position: center;
   transition: transform .35s ease;
 }
-.project-ab .project-item:hover img { transform: scale(1.05); }
+
+/* Hover só em dispositivos com hover */
+@media (hover: hover){
+  .project-ab .project-item:hover img{ transform: scale(1.05); }
+}
 
 /* ===== COLUNAS POR BREAKPOINT ===== */
-/* Mobile (até 767px): 2 colunas para os thumbs ficarem menores */
-@media (max-width: 767px) {
-  .project-ab .project-grid { grid-template-columns: repeat(2, 1fr); }
+/* Medium (>=760px): 3 colunas */
+@media (min-width: 760px){
+  .project-ab .project-grid{
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
 }
 
-/* Tablet (768–1023px): 3 colunas */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .project-ab .project-grid { grid-template-columns: repeat(3, 1fr); }
-}
-
-/* Desktop (≥1024px): 4 colunas */
-@media (min-width: 1024px) {
-  .project-ab .project-grid { grid-template-columns: repeat(4, 1fr); }
-}
-
-/* Telas ultra pequenas (≤230px) — opcional */
-@media (max-width: 230px) {
-  .project-ab .project-grid { grid-template-columns: 1fr; }
-  .project-ab .project-item { aspect-ratio: 1 / 1; }
+/* Large (>=1024px): 4 colunas */
+@media (min-width: 1024px){
+  .project-ab .project-grid{
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
 }
 
 /* ===== AB LIGHTBOX ===== */
-.ab-lightbox {
+.ab-lightbox{
   position: fixed;
   inset: 0;
   z-index: 9999;
-  display: none;               /* fechado por padrão */
+  display: none;                 /* fechado por padrão */
   place-items: center;
   background: rgba(0,0,0,0.9);
 }
-.ab-lightbox.is-open {         /* abre ao adicionar esta classe */
-  display: grid;
-}
+.ab-lightbox.is-open{ display: grid; }
 
-.ab-content {
+.ab-content{
   display: block;
-  width: auto !important;      /* ignora img{width:100%} globais */
+  width: auto !important;        /* ignora img{width:100%} globais */
   height: auto !important;
   max-width: 90vw;
   max-height: 90vh;
-  object-fit: contain;         /* sem corte e sem distorção */
+  object-fit: contain;           /* sem corte e sem distorção */
   border-radius: 8px;
   box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 
-.ab-caption {
+.ab-caption{
   text-align: center;
   color: #fff;
   margin-top: 10px;
@@ -102,7 +110,7 @@
   word-wrap: break-word;
 }
 
-.ab-close {
+.ab-close{
   position: fixed;
   top: 16px;
   right: 22px;
@@ -115,4 +123,9 @@
   padding: 0;
   transition: color .3s ease;
 }
-.ab-close:hover { color: #bbb; }
+.ab-close:hover{ color: #bbb; }
+
+/* Respeita usuários com preferência por menos animação */
+@media (prefers-reduced-motion: reduce){
+  .project-ab .project-item img{ transition: none; }
+}

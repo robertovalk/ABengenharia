@@ -1,4 +1,4 @@
-/* ===== Clientes — Layout 4: Mural Centralizado em Camadas ===== */
+/* ===== Clientes — Layout 4: Mural Centralizado em Camadas (mobile-first) ===== */
 /* Usa do seu :root:
    --azul-escuro: #003554;
    --cobre: #c16036;
@@ -8,14 +8,14 @@
 .clients-showcase{
   position: relative;
   background: radial-gradient(circle at center, var(--azul-escuro) 0%, #001f30 100%);
-  padding: clamp(60px, 6vw, 120px) 20px;
+  padding: clamp(48px, 6vw, 100px) 20px;   /* base mobile */
   text-align: center;
   overflow: hidden;
   color: var(--branco);
 }
 
 /* Cabeçalho */
-.showcase-head{ max-width: 900px; margin: 0 auto 40px; }
+.showcase-head{ max-width: 900px; margin: 0 auto 32px; }
 .showcase-eyebrow{
   color: var(--cobre);
   text-transform: uppercase;
@@ -26,13 +26,13 @@
   margin-bottom: 10px;
 }
 .showcase-title{
-  font-size: clamp(1.8rem, 1.4rem + 1.8vw, 2.6rem);
-  margin: 0 0 12px;
+  font-size: clamp(1.6rem, 1.2rem + 2.2vw, 2.6rem);
+  margin: 0 0 10px;
   color: var(--branco);
 }
 .showcase-sub{
   color: rgba(255,255,255,.85);
-  font-size: 1.05rem;
+  font-size: clamp(0.95rem, 0.9rem + .5vw, 1.05rem);
   margin: 0 auto;
 }
 
@@ -43,27 +43,25 @@
   margin: 0 auto;
   display: grid;
   place-items: center;
-  gap: 28px;
+  gap: 16px;                                /* base mobile */
 }
 .showcase-layer{
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 28px;
+  gap: 16px;
 }
-.layer-back{
-  opacity: .35;
-  transform: scale(.92);
-  filter: blur(1px);
-}
+
+/* camada de fundo some no mobile para simplificar */
+.layer-back{ display: none; }
 .layer-front{ position: relative; z-index: 2; }
 
 /* Cartão de logo */
 .logo-item{
-  background: rgba(0, 27, 40, .62);           /* azul escuro translúcido */
+  background: rgba(0, 27, 40, .62);
   border: 1px solid rgba(255,255,255,.12);
   border-radius: 16px;
-  padding: 18px 26px;
+  padding: 12px 14px;                        /* base mobile enxuta */
   box-shadow: 0 10px 30px rgba(0,0,0,.30);
   display: flex;
   align-items: center;
@@ -72,16 +70,11 @@
 }
 .logo-item img{
   width: 100%;
-  max-width: 220px;
+  max-width: 160px;                          /* base mobile */
   height: auto;
   filter: grayscale(100%);
   opacity: .9;
   transition: filter .25s ease, opacity .25s ease, transform .25s ease;
-}
-.logo-item:hover img{
-  filter: grayscale(0%) brightness(1.06);
-  opacity: 1;
-  transform: scale(1.05);
 }
 
 /* Destaque */
@@ -89,20 +82,60 @@
   border-color: var(--cobre);
   box-shadow: 0 0 22px rgba(193,96,54,.45);
   background: rgba(0, 27, 40, .85);
-  transform: scale(1.05);
 }
 
-/* Responsivo */
-@media (max-width: 1024px){
-  .showcase-layer{ gap: 22px; }
-  .logo-item{ padding: 16px 20px; }
-  .logo-item img{ max-width: 200px; }
+/* Hover só onde há hover (evita zoom travado no touch) */
+@media (hover: hover){
+  .logo-item:hover img{
+    filter: grayscale(0%) brightness(1.06);
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  .logo-item.featured{ transform: scale(1.03); }
 }
-@media (max-width: 760px){
-  .showcase-layer{ gap: 16px; }
-  .logo-item{ padding: 12px 16px; }
-  .logo-item img{ max-width: 170px; }
-  .layer-back{ display: none; } /* limpa a camada de fundo no mobile */
+
+/* ===== Small phones (320–375px) ===== */
+@media (min-width: 320px) and (max-width: 375.98px){
+  .showcase-wrapper{ gap: 14px; }
+  .showcase-layer{ gap: 14px; }
+  .logo-item{ padding: 12px 12px; }
+  .logo-item img{ max-width: 150px; }
+}
+
+/* ===== Medium (>=760px) ===== */
+@media (min-width: 760px){
+  .clients-showcase{ padding: clamp(60px, 6vw, 110px) 24px; }
+  .showcase-head{ margin-bottom: 36px; }
+  .showcase-wrapper{ gap: 22px; }
+  .showcase-layer{ gap: 22px; }
+
+  /* reativa e estiliza a camada de fundo */
+  .layer-back{
+    display: flex;
+    opacity: .35;
+    transform: scale(.94);
+    filter: blur(1px);
+  }
+
+  .logo-item{ padding: 14px 18px; }
+  .logo-item img{ max-width: 190px; }
+}
+
+/* ===== Large (>=1024px) ===== */
+@media (min-width: 1024px){
+  .clients-showcase{ padding: clamp(72px, 7vw, 120px) 28px; }
+  .showcase-wrapper{ gap: 28px; }
+  .showcase-layer{ gap: 28px; }
+
+  .layer-back{
+    opacity: .35;
+    transform: scale(.92);
+    filter: blur(1px);
+  }
+
+  .logo-item{ padding: 18px 26px; }
+  .logo-item img{ max-width: 220px; }
+  .logo-item.featured{ transform: scale(1.05); }
 }
 
 /* Acessibilidade: reduz movimento se o usuário preferir */

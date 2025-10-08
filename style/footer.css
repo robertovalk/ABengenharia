@@ -1,106 +1,111 @@
-/* RODAPÉ - AB ENGENHARIA */
-.footer {
-  background-color: #0f0f0f; /* Preto Profundo */
-  color: #ffffff; /* Branco */
-  padding: 40px 20px 20px;
-  font-family: "Arial", sans-serif;
+/* ===== RODAPÉ - AB ENGENHARIA (mobile-first) ===== */
+.footer{
+  background-color: #0f0f0f;        /* Preto Profundo */
+  color: #ffffff;
+  padding: 32px 20px;
+  font-family: Arial, sans-serif;
 }
 
-.footer-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.footer-container{
   max-width: 1200px;
-  margin: auto;
-  gap: 20px;
-}
-
-.footer-logo {
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;            /* base empilhado */
+  align-items: center;
+  gap: 16px;
   text-align: center;
 }
 
-.footer-logo img {
-  max-width: 120px;
+.footer-logo{
+  text-align: center;
+}
+
+.footer-logo img{
+  max-width: 110px;
+  height: auto;
   margin-bottom: 10px;
+  display: block;
 }
 
-.footer-logo p {
+.footer-logo p{
   font-size: 14px;
-  color: #d9d9d9; /* Cinza Claro */
-  letter-spacing: 1px;
+  color: #d9d9d9;                    /* Cinza Claro */
+  letter-spacing: 0.5px;
+  margin: 0;
 }
 
-.footer-info p {
-  margin: 6px 0;
+.footer-info{
+  display: grid;
+  gap: 6px;
+}
+
+.footer-info p{
+  margin: 0;
   font-size: 14px;
 }
 
-.footer-info a {
-  color: #ff4e00; /* Laranja destaque */
+.footer-info a{
+  color: #ff4e00;                    /* Laranja destaque */
   text-decoration: none;
 }
 
-.footer-info a:hover {
+.footer-info a:hover,
+.footer-info a:focus{
   text-decoration: underline;
+  outline: none;
 }
 
-.footer-bottom {
+.footer-bottom{
   border-top: 1px solid #2e2e2e;
-  margin-top: 20px;
+  margin-top: 18px;
   padding-top: 10px;
   text-align: center;
   font-size: 13px;
   color: #d9d9d9;
 }
 
-/* ======== RESPONSIVIDADE ======== */
-
-/* TELAS PEQUENAS (até 320px) */
-@media (max-width: 320px) {
-  .footer-container {
-    flex-direction: column;
-    text-align: center;
-    gap: 15px;
-  }
-
-  .footer-logo img {
-    max-width: 90px;
-  }
-
-  .footer-info p {
-    font-size: 12px;
-  }
-
-  .footer-bottom {
-    font-size: 11px;
-  }
+/* ===== Small phones (320–375px) ===== */
+@media (min-width: 320px) and (max-width: 375.98px){
+  .footer{ padding: 28px 16px; }
+  .footer-logo img{ max-width: 90px; }
+  .footer-info p{ font-size: 12px; }
+  .footer-bottom{ font-size: 11px; }
 }
 
-/* TELAS MÉDIAS (até 760px) */
-@media (max-width: 760px) {
-  .footer-container {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .footer-info {
-    margin-top: 15px;
-  }
-}
-
-/* TELAS GRANDES (a partir de 1024px) */
-@media (min-width: 1024px) {
-  .footer-container {
-    flex-direction: row;
+/* ===== Medium (>=760px) ===== */
+@media (min-width: 760px){
+  .footer{ padding: 40px 24px 22px; }
+  .footer-container{
+    flex-direction: row;             /* lado a lado */
     justify-content: space-between;
+    align-items: center;
     text-align: left;
+    gap: 24px;
   }
-
-  .footer-logo {
-    text-align: left;
-  }
-
-  .footer-info {
+  .footer-logo{ text-align: left; }
+  .footer-info{
     text-align: right;
+    gap: 8px;
   }
+}
+
+/* ===== Large (>=1024px) ===== */
+@media (min-width: 1024px){
+  .footer{ padding: 48px 24px 24px; }
+  .footer-logo img{ max-width: 120px; }
+  .footer-info p{ font-size: 14px; }
+  .footer-container{ gap: 32px; }
+}
+
+/* Opcional: variação cobre (se quiser inverter esquema) */
+.footer--copper{
+  background: #ff4e00;
+  color: #0f0f0f;
+}
+.footer--copper .footer-info a{
+  color: #001f3f;                    /* contraste sobre cobre */
+}
+.footer--copper .footer-bottom{
+  border-top-color: rgba(15,15,15,.25);
+  color: #0f0f0f;
 }

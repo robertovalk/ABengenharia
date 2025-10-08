@@ -1,95 +1,100 @@
-.about-ab {
-  padding: 60px 20px;
+/* ====== ABOUT — mobile-first ====== */
+.about-ab{
+  padding: 48px 20px;
   background-color: #f5f5f5;
   font-family: Arial, sans-serif;
 }
 
-.about-ab .container {
+.about-ab .container{
   max-width: 1100px;
   margin: 0 auto;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;        /* base empilhado */
   align-items: center;
-  gap: 40px;
+  gap: 28px;
+  text-align: center;            /* base centralizado */
 }
 
-.about-ab .about-image {
-  flex: 1;
-  min-width: 300px;
-}
-
-.about-ab .about-image img {
+.about-ab .about-image{
   width: 100%;
+  max-width: 680px;              /* evita imagem gigante no mobile */
+}
+
+.about-ab .about-image img{
+  width: 100%;
+  height: auto;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  display: block;
 }
 
-.about-ab .about-text {
-  flex: 1;
-  min-width: 300px;
+.about-ab .about-text{
+  width: 100%;
+  max-width: 760px;
 }
 
-.about-ab .about-text h2 {
-  font-size: 2rem;
+.about-ab .about-text h2{
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
   color: #222;
-  margin-bottom: 20px;
+  margin: 0 0 16px;
+  line-height: 1.2;
 }
 
-.about-ab .about-text p {
-  font-size: 1.1rem;
+.about-ab .about-text p{
+  font-size: clamp(1rem, 2.7vw, 1.1rem);
   color: #555;
-  line-height: 1.6;
-  margin-bottom: 20px;
+  line-height: 1.65;
+  margin: 0 0 18px;
   text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
 }
 
-/* =========================
-   RESPONSIVIDADE
-========================= */
-
-/* Para telas até 1024px (notebooks/tablets em paisagem) */
-@media (max-width: 1024px) {
-  .about-ab .container {
-    gap: 30px;
-  }
-
-  .about-ab .about-text h2 {
-    font-size: 1.8rem;
-  }
+/* ===== Small phones (320–375px) ===== */
+@media (min-width: 320px) and (max-width: 375.98px){
+  .about-ab{ padding: 40px 16px; }
+  .about-ab .container{ gap: 24px; }
+  .about-ab .about-text h2{ font-size: clamp(1.4rem, 6vw, 1.6rem); }
+  .about-ab .about-text p{ font-size: 0.98rem; }
 }
 
-/* Para telas até 768px (tablets e celulares grandes) */
-@media (max-width: 768px) {
-  .about-ab .container {
-    flex-direction: column;
-    text-align: center;
+/* ===== Medium (>=760px) ===== */
+@media (min-width: 760px){
+  .about-ab{ padding: 56px 24px; }
+  .about-ab .container{
+    flex-direction: row;         /* lado a lado */
+    align-items: center;
+    gap: 36px;
+    text-align: left;            /* volta ao alinhamento natural */
   }
-
-  .about-ab .about-text {
-    margin-top: 20px;
+  .about-ab .about-image,
+  .about-ab .about-text{
+    flex: 1 1 0;
+    min-width: 0;               /* evita overflow em flex */
   }
-
-  .about-ab .about-text h2 {
-    font-size: 1.6rem;
+  .about-ab .about-text h2{
+    font-size: clamp(1.7rem, 2.2vw, 1.9rem);
+    margin-bottom: 18px;
   }
-
-  .about-ab .about-text p {
-    font-size: 1rem;
-  }
-}
-
-/* Para telas até 320px (celulares pequenos) */
-@media (max-width: 320px) {
-  .about-ab {
-    padding: 30px 10px;
-  }
-
-  .about-ab .about-text h2 {
-    font-size: 1.4rem;
-  }
-
-  .about-ab .about-text p {
-    font-size: 0.95rem;
+  .about-ab .about-text p{
+    font-size: clamp(1rem, 1.6vw, 1.08rem);
+    margin-bottom: 18px;
   }
 }
 
+/* ===== Large (>=1024px) ===== */
+@media (min-width: 1024px){
+  .about-ab{ padding: 64px 28px; }
+  .about-ab .container{ gap: 44px; }
+  .about-ab .about-text h2{
+    font-size: clamp(1.9rem, 2vw, 2.15rem);
+  }
+  .about-ab .about-text p{
+    font-size: clamp(1.05rem, 1.3vw, 1.15rem);
+  }
+}
+
+/* Acessibilidade: reduz movimentos se o usuário preferir */
+@media (prefers-reduced-motion: reduce){
+  .about-ab *{ scroll-behavior: auto; }
+}
