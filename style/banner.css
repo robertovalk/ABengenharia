@@ -25,9 +25,10 @@
 .title-banner{
   font-size: clamp(1.9rem, 6vw, 2.4rem);
   line-height: 1.15;
-  text-shadow: 0 0 3px #000000;
-  color: #001f3f;
   margin: 0;
+  color: cornsilk;
+  text-shadow: 19px 10px 10px black;
+  font-weight: 700;
 }
 
 .subtitle-banner{
@@ -35,8 +36,9 @@
   font-size: clamp(1rem, 3.8vw, 1.25rem);
   line-height: 1.35;
   text-shadow: 0 2px 8px #000000; /* sombra mais suave no mobile */
-  color: #e6e6e6;
   font-weight: 700;
+  margin-bottom: 20px;
+  color: cornsilk;
 }
 
 /* ===== Small phones (320–375px) ===== */
@@ -54,6 +56,7 @@
   .carousel-caption{
     bottom: 10rem;
     padding-inline: 24px;
+
   }
   .title-banner{
     font-size: clamp(2.2rem, 3.2vw, 3rem);
@@ -70,12 +73,17 @@
   .imagens{
     height: min(70vh, 38rem);
   }
-  .carousel-caption{ bottom: 13rem; }
+  .carousel-caption { 
+    bottom: 13rem; 
+    text-align: center;
+  }
   .title-banner{
     font-size: clamp(2.6rem, 2.4vw, 3.5rem);
+
   }
   .subtitle-banner{
     font-size: clamp(1.2rem, 1.6vw, 1.75rem);
     margin-top: 18px;
+ 
   }
 }
