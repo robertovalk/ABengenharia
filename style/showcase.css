@@ -72,7 +72,7 @@
   width: 100%;
   max-width: 160px;                          /* base mobile */
   height: auto;
-  filter: grayscale(100%);
+  
   opacity: .9;
   transition: filter .25s ease, opacity .25s ease, transform .25s ease;
 }
@@ -81,7 +81,7 @@
 .logo-item.featured{
   border-color: var(--cobre);
   box-shadow: 0 0 22px rgba(193,96,54,.45);
-  background: rgba(0, 27, 40, .85);
+ 
 }
 
 /* Hover só onde há hover (evita zoom travado no touch) */
