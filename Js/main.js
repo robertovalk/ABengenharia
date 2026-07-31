@@ -47,3 +47,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   console.log('[AB Lightbox] pronto ✅');
 });
+
+const reviewsTrack = document.getElementById('reviewsTrack');
+const arrowLeft = document.querySelector('.reviews-arrow-left');
+const arrowRight = document.querySelector('.reviews-arrow-right');
+
+if (reviewsTrack && arrowLeft && arrowRight) {
+  const scrollAmount = 320;
+  arrowLeft.addEventListener('click', () => {
+    reviewsTrack.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  });
+  arrowRight.addEventListener('click', () => {
+    reviewsTrack.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  });
+}
